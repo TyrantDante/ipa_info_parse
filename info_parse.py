@@ -172,9 +172,22 @@ def main(src, dst):
         finally:
             index = index + 1
             rmdir_recure(temp_dir)
+# main("/Volumes/disk/apps", "/Users/daiyichao/Downloads/export")
 
 
-    # print(errors)
+def plist_make(path):
+
+    out_put = ''
+    with open(path, 'rb') as f:
+        content = f.read()
+        array = content.splitlines()
+        for item in array:
+            item_array = ("%s" % item).split(',')
+            scheme = item_array[2]
+            out_put = out_put + "<string>"+scheme+"</string>\r\n"
+
+    print(out_put)
 
 
-main("/Volumes/disk/apps", "/Users/daiyichao/Downloads/export")
+plist_make("/Users/daiyichao/Downloads/applist_sec.csv")
+
